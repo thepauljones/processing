@@ -1,14 +1,13 @@
-var slider;
+var angle = 4;
 function setup() {
     createCanvas(640, 480);
-    slider = createSlider(0, Math.PI * 2, 2, 0.2);
     background(41);
     stroke(255);
     translate(width / 2, height);
 }
 
 function draw() {
-    angle = slider.value();
+    angle+=0.01;
     branch(100);
     translate(width / 2, height);
 }
