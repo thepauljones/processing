@@ -4,7 +4,7 @@ function Pipe() {
     const GAP = 200;
     const MIN_HEIGHT = 200;
     const W = 20;
-    const top = Math.random() * (height / 2 + MIN_HEIGHT) - GAP;
+    const top = Math.random() * ((height / 2 + MIN_HEIGHT) - GAP);
     let pipeX = width - W;
     let colours = [100, 170, 80];
 

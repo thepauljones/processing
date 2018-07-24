@@ -4,12 +4,17 @@ function Bird() {
     const force = 1.6;
     var velocity = 2;
     var gravity = 7.6;
+    var flaps = [];
 
+    textSize(24);
+    textFont('Helvetica');
     this.y = height / 2;
 
     this.show = () => {
-        fill(255);
-        ellipse(this.x, this.y, radius, radius);
+        fill(180, 255, 100);
+        // ellipse(this.x, this.y, radius, radius);
+        textSize(24);
+        text('Bird', this.x, this.y);
     }
 
     this.update = () => {
@@ -23,10 +28,19 @@ function Bird() {
         if (this.y < 0) {
             this.gameOver('flew too high');
         }
+
+        for(var i = flaps.length - 1; i > 0; i--) {
+
+            flaps[i].draw();
+            flaps[i].update();
+
+        }
+
     }
 
     this.flap = () => {
         velocity += -(force * 20);
+        flaps.push(new Flap(this.x, this.y));
     }
 
     this.gameOver = (reason) => {
