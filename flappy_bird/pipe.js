@@ -1,19 +1,26 @@
 function Pipe() {
 
     const velocity = 2;
-    const GAP = 70;
+    const GAP = 200;
+    const MIN_HEIGHT = 200;
     const W = 20;
-    const top = Math.random() * (height / 2) - GAP;
-    let t, b;
+    const top = Math.random() * (height / 2 + MIN_HEIGHT) - GAP;
+    let pipeX = width - W;
+    let colours = [100, 170, 80];
 
     this.draw = () => {
-        fill(100, 100, 255);
-        rect(width, 0, W, top);
-        rect(width, top + GAP, W, height - (top + GAP));
+        fill(...colours);
+        rect(pipeX, 0, W, top);
+        rect(pipeX, top + GAP, W, height - (top + GAP));
     }
 
     this.update = () => {
-        this.x -= velocity;
+        pipeX -= velocity;
     }
 
+    this.hit = (bird) => {
+        if(bird.x < pipeX + W && bird.x > pipeX)
+            if(bird.y < top || bird.y > top + GAP)
+                colours = [255, 0, 0];
+    }
 }
